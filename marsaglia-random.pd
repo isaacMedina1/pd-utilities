@@ -1,0 +1,224 @@
+#N canvas 503 23 761 674 12;
+#X obj 90 882 / 100;
+#X obj 90 858 random 100;
+#X floatatom 90 906 5 0 0 0 - - -;
+#X obj 185 882 / 100;
+#X obj 185 858 random 100;
+#X floatatom 185 906 5 0 0 0 - - -;
+#X obj 90 929 * 2;
+#X obj 90 953 - 1;
+#X obj 185 929 * 2;
+#X obj 185 953 - 1;
+#X obj 90 977 t f f;
+#X obj 90 1001 *;
+#X obj 185 977 t f f;
+#X obj 185 1001 *;
+#X obj 90 1025 +, f 14;
+#X obj 123 797 t b b;
+#X obj 153 1263 t b f, f 6;
+#X msg 153 1287 1;
+#X obj 282 301 value mean;
+#X obj 282 381 value stdDev;
+#X floatatom 282 278 5 0 0 0 - - -;
+#X floatatom 282 358 5 0 0 0 - - -;
+#X obj 122 1001 value u;
+#X obj 192 1287 value spare;
+#X obj 143 1322 expr mean + stdDev * u * $f1;
+#X obj 153 1239 *;
+#X obj 394 1322 expr spare * stdDev + mean;
+#X obj 143 1205 expr sqrt(2.0 * log1p($f1) / $f1);
+#X obj 172 677 loadbang;
+#X msg 172 701 0;
+#X obj 236 797 t b b, f 23;
+#X msg 236 821 0;
+#X obj 162 725 f, f 35;
+#X obj 162 653 t b b, f 11;
+#X obj 236 773 spigot;
+#X obj 123 773 spigot;
+#X obj 162 749 != 1;
+#X obj 90 1059 >= 1;
+#X obj 143 1059 == 0;
+#X obj 90 1083 ||, f 8;
+#X obj 90 1107 sel 1, f 8;
+#X obj 60 1141 bang;
+#X obj 143 1141 bang;
+#X obj 143 1171 f, f 9;
+#X msg 303 551 0;
+#X obj 162 575 t b b, f 17;
+#X obj 303 503 loadbang;
+#X obj 248 599 + 1;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array points 100 float 3;
+#A 0 67.2944 54.9579 49.755 55.2142 62.4906 68.6279 58.4059 54.824
+54.0454 51.2041 67.1139 62.1578 59.9902 66.1275 67.2599 61.976 55.3389
+66.1174 55.287 65.987 68.407 54.7935 56.3584 50.9142 63.7824 57.7822
+48.3621 64.8488 56.6455 50.0211 49.6706 65.5114 59.0721 65.6248 69.2493
+59.0954 64.9933 57.4893 50.7521 64.5002 64.8547 58.392 52.4266 59.348
+51.685 62.5616 65.3303 49.2586 55.5394 56.2022 55.046 51.746 54.5175
+48.2541 55.748 68.8362 56.6303 53.7398 58.8537 55.8748 63.0003 65.3328
+58.1239 63.719 57.5889 59.3595 50.4671 50.4671 56.3826 59.9769 52.3758
+58.0763 49.4246 62.5756 59.7738 47.5817 67.1959 53.36 67.2112 64.7919
+52.6105 56.624 66.3598 63.2323 67.4996 58.2052 53.08 54.0038 52.1371
+64.8505 57.9174 60.9603 54.6882 57.2916 62.1766 52.719 66.4764 55.9029
+51.9846 55.1069;
+#X coords 0 127 100 0 200 200 1 0 0;
+#X restore 60 200 graph;
+#X obj 254 1487 tabwrite points;
+#X obj 248 623 - 1;
+#X obj 162 503 t b b, f 17;
+#X obj 162 480 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 162 527 100;
+#X obj 162 551 until;
+#X obj 459 220 loadbang;
+#X text 33 135 https://en.wikipedia.org/wiki/Marsaglia_polar_method
+;
+#X text 719 1542 comment;
+#X obj 282 200 bng 15 250 50 0 empty empty click_me! 17 7 0 10 -262144
+-1 -1;
+#X obj 278 599 f, f 4;
+#X text 156 1107 <- while true repeat previous block;
+#X text 79 858 u;
+#X text 174 858 v;
+#X msg 459 244 \; points ylabel -2 12 36 60 84 108;
+#X obj 254 1439 expr if($f1 < 0 \, 0 \, if($f1 > 127 \, 127 \, $f1))
+;
+#X obj 254 1463 abs;
+#X obj 520 873 noteout, f 12;
+#X obj 523 829 hsl 83 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 4378 1;
+#X obj 520 560 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 600 715 random 250;
+#X obj 600 648 random 100;
+#X obj 600 696 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 680 696 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 520 614 t b b, f 9;
+#X obj 600 739 + 50;
+#X obj 600 672 moses 70, f 10;
+#X obj 680 715 random 800;
+#X obj 680 739 + 800;
+#X obj 520 805 spigot;
+#X obj 559 781 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 25 528 iterate 100 samples;
+#X text 536 559 <- clocked random sample;
+#X text 33 65 Marsaglia polar method to generate random numbers around
+a mean with a standard deviation. Values produced are constrained to
+0 and 127 for using this generator as a MIDI note triggering source.
+;
+#X obj 285 258 hsl 83 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 3868 1;
+#X obj 285 338 hsl 83 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 600 1;
+#X obj 282 220 s normalRandomNumbers;
+#X obj 162 455 r normalRandomNumbers;
+#X obj 25 30 cnv 15 426 30 empty empty Marsaglia_Polar 20 15 0 20 -233017
+-66577 0;
+#X text 110 1439 constrain(x \, 0 \, 127);
+#X text 311 599 [tabwrite] index counter;
+#X floatatom 143 1346 10 0 0 0 - - -;
+#X floatatom 394 1346 10 0 0 0 - - -;
+#X obj 520 849 makenote 100 10;
+#X obj 520 590 metro 125;
+#X text 553 115 isaacMedina-2021;
+#X text 623 135 enjoy!;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 6 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 0;
+#X connect 5 0 8 0;
+#X connect 6 0 7 0;
+#X connect 7 0 10 0;
+#X connect 8 0 9 0;
+#X connect 9 0 12 0;
+#X connect 10 0 11 0;
+#X connect 10 1 11 1;
+#X connect 10 1 22 0;
+#X connect 11 0 14 0;
+#X connect 12 0 13 0;
+#X connect 12 1 13 1;
+#X connect 12 1 25 1;
+#X connect 13 0 14 1;
+#X connect 14 0 37 0;
+#X connect 14 0 38 0;
+#X connect 14 0 43 1;
+#X connect 15 0 1 0;
+#X connect 15 1 4 0;
+#X connect 16 0 17 0;
+#X connect 16 1 23 0;
+#X connect 17 0 32 1;
+#X connect 20 0 18 0;
+#X connect 21 0 19 0;
+#X connect 24 0 64 0;
+#X connect 24 0 90 0;
+#X connect 25 0 16 0;
+#X connect 26 0 64 0;
+#X connect 26 0 91 0;
+#X connect 27 0 25 0;
+#X connect 27 0 24 0;
+#X connect 28 0 29 0;
+#X connect 29 0 32 0;
+#X connect 30 0 31 0;
+#X connect 30 1 26 0;
+#X connect 31 0 32 1;
+#X connect 32 0 36 0;
+#X connect 32 0 34 1;
+#X connect 33 0 32 0;
+#X connect 33 1 35 0;
+#X connect 33 1 34 0;
+#X connect 34 0 30 0;
+#X connect 35 0 15 0;
+#X connect 36 0 35 1;
+#X connect 37 0 39 0;
+#X connect 38 0 39 1;
+#X connect 39 0 40 0;
+#X connect 40 0 41 0;
+#X connect 40 1 42 0;
+#X connect 41 0 15 0;
+#X connect 42 0 43 0;
+#X connect 43 0 27 0;
+#X connect 44 0 59 1;
+#X connect 45 0 33 0;
+#X connect 45 1 59 0;
+#X connect 46 0 44 0;
+#X connect 47 0 50 0;
+#X connect 47 0 59 1;
+#X connect 50 0 49 1;
+#X connect 51 0 53 0;
+#X connect 51 1 44 0;
+#X connect 52 0 51 0;
+#X connect 53 0 54 0;
+#X connect 54 0 45 0;
+#X connect 55 0 63 0;
+#X connect 58 0 85 0;
+#X connect 59 0 47 0;
+#X connect 64 0 65 0;
+#X connect 65 0 49 0;
+#X connect 65 0 78 0;
+#X connect 67 0 92 0;
+#X connect 68 0 79 0;
+#X connect 68 0 93 0;
+#X connect 69 0 74 0;
+#X connect 70 0 75 0;
+#X connect 71 0 69 0;
+#X connect 72 0 76 0;
+#X connect 73 0 33 0;
+#X connect 73 1 70 0;
+#X connect 74 0 93 1;
+#X connect 75 0 71 0;
+#X connect 75 1 72 0;
+#X connect 76 0 77 0;
+#X connect 77 0 93 1;
+#X connect 78 0 67 0;
+#X connect 79 0 78 1;
+#X connect 83 0 20 0;
+#X connect 84 0 21 0;
+#X connect 86 0 52 0;
+#X connect 92 0 66 0;
+#X connect 92 1 66 1;
+#X connect 93 0 73 0;
+#X coords 0 0 1 1 85 60 0;
