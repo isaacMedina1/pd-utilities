@@ -1,0 +1,78 @@
+#N canvas 421 96 651 604 10;
+#X text 28 32 Euclidian algorithm to find the Greatest Commmon Divisor
+of two natural numbers.;
+#X text 28 102 In each step the algorithm divides A by B. If the remainder
+is not equal to 0 \, then the procedure sets a value of B into the
+variable A and the remainder into the variable B and repeats the step
+(division). If the remainder is equal to 0 \, then the algorithm returns
+value stored in B (it is the greatest common divisor of original numbers
+A and B).;
+#X obj 31 67 cnv 15 150 24 empty empty gcd(A.B)=gcd(B.A%B) 10 12 0
+12 -66577 -262144 0;
+#X floatatom 31 246 5 0 0 2 a - -;
+#X floatatom 75 246 5 0 0 2 b - -;
+#X obj 291 372 expr if((a%b)!=0 \, a=b \, 1);
+#X obj 456 351 t b b;
+#X obj 41 278 v a;
+#X obj 85 278 v b;
+#X obj 456 372 expr if((a%b)!=0 \, a%b \, 1);
+#X obj 483 413 f;
+#X obj 483 434 v b;
+#X obj 291 413 ==, f 28;
+#X obj 291 455 v b;
+#X floatatom 331 486 5 0 0 1 gcd - -;
+#X obj 291 330 t b b, f 28;
+#X obj 291 309 until, f 28;
+#X obj 291 434 sel 1;
+#X obj 291 486 v gcd;
+#X obj 138 381 f;
+#X obj 213 381 f;
+#X obj 138 402 expr $f1/gcd \; $f2/gcd;
+#X floatatom 138 434 5 0 0 0 - - -;
+#X floatatom 182 434 5 0 0 0 - - -;
+#X obj 138 330 t b b, f 13;
+#X obj 138 278 t b b, f 26;
+#X obj 138 246 bng 15 250 50 0 empty empty GET 17 7 0 10 -262144 -258113
+-1;
+#X text 171 433 /;
+#X text 68 434 simplified:;
+#X text 64 245 /;
+#X text 510 294 354/960 => 59/160;
+#X text 30 520 based on: https://www.programming-algorithms.net/article/43434/Greatest-common-divisor
+;
+#X text 510 279 gcd(354 \, 960) = 6;
+#X obj 31 299 s aa;
+#X obj 75 299 s bb;
+#X obj 153 360 r aa;
+#X obj 228 360 r bb;
+#X text 28 192 Use this to simplify fractions.;
+#X connect 3 0 7 0;
+#X connect 3 0 33 0;
+#X connect 4 0 8 0;
+#X connect 4 0 10 1;
+#X connect 4 0 34 0;
+#X connect 5 0 12 0;
+#X connect 6 0 9 0;
+#X connect 6 1 10 0;
+#X connect 9 0 12 1;
+#X connect 9 0 10 1;
+#X connect 10 0 11 0;
+#X connect 12 0 17 0;
+#X connect 13 0 14 0;
+#X connect 13 0 18 0;
+#X connect 15 0 5 0;
+#X connect 15 1 6 0;
+#X connect 16 0 15 0;
+#X connect 17 0 16 1;
+#X connect 17 0 13 0;
+#X connect 19 0 21 0;
+#X connect 20 0 21 1;
+#X connect 21 0 22 0;
+#X connect 21 1 23 0;
+#X connect 24 0 19 0;
+#X connect 24 1 20 0;
+#X connect 25 0 24 0;
+#X connect 25 1 16 0;
+#X connect 26 0 25 0;
+#X connect 35 0 19 1;
+#X connect 36 0 20 1;
